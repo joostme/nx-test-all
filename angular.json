@@ -90,32 +90,61 @@
         }
       }
     },
-    "test-e2e": {
-      "root": "apps/test-e2e",
-      "sourceRoot": "apps/test-e2e/src",
-      "projectType": "application",
+    "lib-a": {
+      "projectType": "library",
+      "root": "libs/lib-a",
+      "sourceRoot": "libs/lib-a/src",
+      "prefix": "nx-test-all",
       "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/test-e2e/cypress.json",
-            "tsConfig": "apps/test-e2e/tsconfig.e2e.json",
-            "devServerTarget": "test:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "test:serve:production"
-            }
-          }
-        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/test-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/test-e2e/**"]
+            "tsConfig": [
+              "libs/lib-a/tsconfig.lib.json",
+              "libs/lib-a/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/lib-a/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/lib-a/jest.config.js",
+            "tsConfig": "libs/lib-a/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/lib-a/src/test-setup.ts"
           }
         }
-      }
+      },
+      "schematics": {}
+    },
+    "lib-b": {
+      "projectType": "library",
+      "root": "libs/lib-b",
+      "sourceRoot": "libs/lib-b/src",
+      "prefix": "nx-test-all",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/lib-b/tsconfig.lib.json",
+              "libs/lib-b/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/lib-b/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/lib-b/jest.config.js",
+            "tsConfig": "libs/lib-b/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/lib-b/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
     }
   },
   "cli": {

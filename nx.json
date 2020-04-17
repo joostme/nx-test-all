@@ -22,9 +22,11 @@
     "test": {
       "tags": []
     },
-    "test-e2e": {
-      "tags": [],
-      "implicitDependencies": ["test"]
+    "lib-a": {
+      "tags": []
+    },
+    "lib-b": {
+      "tags": []
     }
   }
 }
