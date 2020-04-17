@@ -1,6 +1,24 @@
 {
   "version": 1,
   "projects": {
+    "all": {
+      "projectType": "application",
+      "root": ".",
+      "sourceRoot": ".",
+      "prefix": "nx-test-all",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "all.jest.config.js",
+            "tsConfig": "all.tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "all-test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    },
     "test": {
       "projectType": "application",
       "schematics": {},
